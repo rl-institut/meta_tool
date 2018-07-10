@@ -1,0 +1,6 @@
+
+sqlalchemy
+sqlalchemy_utils
+sqlahelper
+configobj
+psycopg2-binary
