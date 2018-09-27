@@ -4,9 +4,8 @@ import sqlalchemy as sqla
 import sqlahelper
 import transaction
 
-from settings import meta_engine
 import logging
-from models import Meta, Run
+from meta_show.models import Meta, Run
 
 
 def get_comment_from_db(engine, schema=None, table=None):

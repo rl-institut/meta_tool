@@ -6,13 +6,13 @@ import sqlalchemy_utils
 import sqlahelper
 import logging
 
-from models import Base
-
-
-logging.basicConfig(level=logging.INFO)
+from meta_show.models import Base
 
 
 config = ConfigObj(os.environ['CONFIG_PATH'])
+logging.basicConfig(level=logging.INFO)
+
+
 db_url = '{ENGINE}://{USER}:{PASSWORD}@{HOST}:{PORT}/{NAME}'
 
 
