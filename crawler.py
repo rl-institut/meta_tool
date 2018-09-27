@@ -5,6 +5,7 @@ import sqlahelper
 import transaction
 
 from settings import meta_engine
+import logging
 from models import Meta, Run
 
 
@@ -42,11 +43,44 @@ def get_comment_from_db(engine, schema=None, table=None):
     return engine.execute(sql, params).next()[0]
 
 
+def get_owner_from_db(engine, schema=None, table=None):
+    if table is not None:
+        sql = (
+            'SELECT '
+            'pg_catalog.pg_get_userbyid(relowner) '
+            'FROM pg_catalog.pg_class '
+            'JOIN pg_catalog.pg_namespace ON relnamespace = pg_namespace.oid '
+            'WHERE nspname = %(schema)s AND relname = %(table)s'
+        )
+    elif schema is not None:
+        sql = (
+            'SELECT '
+            'pg_catalog.pg_get_userbyid(nspowner) '
+            'FROM pg_catalog.pg_namespace '
+            'WHERE nspname = %(schema)s'
+        )
+    else:
+        sql = (
+            'SELECT '
+            'pg_catalog.pg_get_userbyid(d.datdba) '
+            'FROM pg_catalog.pg_database d '
+            'WHERE d.datname=%(database)s'
+        )
+    params = {
+        'database': engine.url.database,
+        'schema': schema,
+        'table': table
+    }
+    return engine.execute(sql, params).next()[0]
+
+
 def check_json(text):
-    # TODO: Check if it is usable json
     if text is None:
         return None
-    js = json.dumps(text)
+    try:
+        js = json.loads(text)
+    except ValueError:
+        return None
     return js
 
 
@@ -58,37 +92,49 @@ def get_meta_from_db():
     engines = sqlahelper._engines
     engine_count = len(engines)
     for e, engine_name in enumerate(engines):
-        print(f'Engine ({e}/{engine_count}): {engine_name}')
+        logging.info(f'Engine ({e + 1}/{engine_count}): {engine_name}')
         engine = sqlahelper.get_engine(engine_name)
         inspect = sqla.inspect(engine)
 
+        owner = get_owner_from_db(engine)
         comment = get_comment_from_db(engine)
         js = check_json(comment)
-        meta_database = Meta(location=engine_name)
+        meta_database = Meta(location=engine_name, json=js, owner=owner)
         run.root.append(meta_database)
         session.add(meta_database)
+        session.flush()
 
         schemas = inspect.get_schema_names()
         schema_count = len(schemas)
         for s, schema in enumerate(schemas):
-            print(f'- Schema ({s}/{schema_count}): {schema}')
+            logging.info(f'- Schema ({s + 1}/{schema_count}): {schema}')
 
+            owner = get_owner_from_db(engine, schema)
             comment = get_comment_from_db(engine, schema)
             js = check_json(comment)
             meta_schema = Meta(
                 location=schema,
-                parent_id=meta_database.meta_id
+                parent_id=meta_database.meta_id,
+                json=js,
+                owner=owner
             )
             session.add(meta_schema)
+            session.flush()
 
             tables = inspect.get_table_names(schema)
             table_count = len(tables)
             for t, table in enumerate(tables):
-                print(f'  - Table ({t}/{table_count}): {table}')
+                logging.info(f'  - Table ({t + 1}/{table_count}): {table}')
+
+                owner = get_owner_from_db(engine, schema, table)
                 comment = get_comment_from_db(engine, schema, table)
+                js = check_json(comment)
                 meta_table = Meta(
                     location=table,
-                    parent_id=meta_schema.meta_id)
+                    parent_id=meta_schema.meta_id,
+                    json=js,
+                    owner=owner
+                )
                 session.add(meta_table)
 
     transaction.commit()
