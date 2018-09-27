@@ -1,0 +1,4 @@
+<form action="{% url 'meta_show:crawler' %}" method="post">
+  {% csrf_token %}
+  <input type="submit" name="crawl" value="Crawl!">
+</form>
