@@ -4,8 +4,12 @@ from configobj import ConfigObj
 import sqlalchemy
 import sqlalchemy_utils
 import sqlahelper
+import logging
 
 from models import Base
+
+
+logging.basicConfig(level=logging.INFO)
 
 
 config = ConfigObj(os.environ['CONFIG_PATH'])
