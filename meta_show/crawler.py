@@ -3,9 +3,10 @@ import json
 import sqlalchemy as sqla
 import sqlahelper
 import transaction
-
 import logging
-from meta_show.models import Meta, Run
+
+from meta_show.settings import config
+from meta_show.models import Meta, Run, Source
 
 
 def get_comment_from_db(engine, schema=None, table=None):
@@ -91,17 +92,32 @@ def get_meta_from_db():
     engines = sqlahelper._engines
     engine_count = len(engines)
     for e, engine_name in enumerate(engines):
-        if e > 0:
+        if e > 1:
             break
         logging.info(f'Engine ({e + 1}/{engine_count}): {engine_name}')
         engine = sqlahelper.get_engine(engine_name)
         inspect = sqla.inspect(engine)
 
+        source_info = config['SOURCES'][engine_name]
+        info = '{ENGINE}://{HOST}:{PORT}'.format(
+            **config['DATABASES'][source_info['CONNECTION']])
+        source = Source(
+            type=source_info.pop('TYPE'),
+            name=engine_name,
+            info=info
+        )
+        run.sources.append(source)
+        session.flush()
+
         owner = get_owner_from_db(engine)
         comment = get_comment_from_db(engine)
         js = check_json(comment)
-        meta_database = Meta(location=engine_name, json=js, owner=owner)
-        run.root.append(meta_database)
+        meta_database = Meta(
+            location=source_info['DATABASE'],
+            json=js,
+            owner=owner
+        )
+        source.root = meta_database
         session.add(meta_database)
         session.flush()
 

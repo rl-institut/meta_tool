@@ -1,8 +1,10 @@
 
+import sqlahelper
 from django.views.generic import TemplateView
 from django.views.defaults import bad_request
+from django.http import JsonResponse
 
-from meta_show import forms, crawler
+from meta_show import forms, crawler, models
 
 
 class IndexView(TemplateView):
@@ -24,6 +26,11 @@ class ShowView(TemplateView):
     def get_context_data(self, run_form, run_id, **kwargs):
         context = super(ShowView, self).get_context_data(**kwargs)
         context['run_form'] = run_form
+
+        # Get root:
+        session = sqlahelper.get_session()
+        run = session.query(models.Run).get(run_id)
+        context['engines'] = run.sources
         return context
 
     def get(self, request, *args, **kwargs):
@@ -40,3 +47,15 @@ class ShowView(TemplateView):
             return bad_request(request, IndexError)
         context = self.get_context_data(run_form, run_id)
         return self.render_to_response(context)
+
+
+def get_meta(request):
+    meta_id = request.GET.get('meta_id', None)
+    if meta_id is not None:
+        session = sqlahelper.get_session()
+        meta = session.query(models.Meta).get(meta_id)
+        data = {
+            'json': str(meta.json)
+        }
+        return JsonResponse(data)
+    return JsonResponse({})
