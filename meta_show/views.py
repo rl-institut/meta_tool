@@ -32,7 +32,7 @@ class ShowView(TemplateView):
     def post(self, request):
         run_form = forms.RunSelectionForm(request.POST)
         if run_form.is_valid():
-            run_id = run_form['runs']
+            run_id = run_form.cleaned_data['runs']
         else:
             return bad_request(request, IndexError)
         context = self.get_context_data(run_form, run_id)
