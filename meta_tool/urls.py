@@ -21,5 +21,9 @@ from django.views.generic import RedirectView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(pattern_name='meta_show:index')),
-    path('meta_show/', include('meta_show.urls', namespace='meta_show'))
+    path('meta_show/', include('meta_show.urls', namespace='meta_show')),
+    path(
+        'meta_creator/',
+        include('meta_creator.urls', namespace='meta_creator')
+    )
 ]

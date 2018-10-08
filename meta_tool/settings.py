@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'meta_show'
+    'django_jsonforms',
+    'meta_show',
+    'meta_creator'
 ]
 
 MIDDLEWARE = [
@@ -117,3 +119,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+JSONFORMS_SCHEMA_DIR = 'static'
