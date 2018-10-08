@@ -4,20 +4,11 @@ from django.views.generic import TemplateView
 from django.views.defaults import bad_request
 from django.http import JsonResponse
 
-from meta_show import forms, crawler, models
+from meta_show import forms, models
 
 
 class IndexView(TemplateView):
     template_name = 'meta_show/index.html'
-
-
-class CrawlerView(TemplateView):
-    template_name = 'meta_show/crawler.html'
-
-    def post(self, request):
-        if 'crawl' in request.POST:
-            crawler.get_meta_from_db()
-            return self.get(request)
 
 
 class ShowView(TemplateView):
