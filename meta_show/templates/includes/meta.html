@@ -1,4 +1,11 @@
-<li><a href="javascript:get_meta({{meta.meta_id}})">{{meta.location}}</a>
+<li>
+  <a href="javascript:get_meta({{meta.meta_id}})">
+    {% if meta.json %}
+      {{meta.location}}
+    {% else %}
+      <font color="red">{{meta.location}}</font>
+    {% endif %}
+  </a>
   {% if meta.children %}
   <ul>
     {% for child in meta.children %}
