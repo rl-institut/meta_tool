@@ -105,7 +105,7 @@ def get_meta_from_db():
         info = '{ENGINE}://{HOST}:{PORT}'.format(
             **config['DATABASES'][source_info['CONNECTION']])
         source = Source(
-            type=source_info.pop('TYPE'),
+            type=source_info['TYPE'],
             name=engine_name,
             info=info
         )
@@ -124,7 +124,11 @@ def get_meta_from_db():
         session.add(meta_database)
         session.flush()
 
-        schemas = inspect.get_schema_names()
+        schemas = [
+            schema
+            for schema in inspect.get_schema_names()
+            if schema not in source_info.get('EXCLUDE_SCHEMAS', [])
+        ]
         schema_count = len(schemas)
         for s, schema in enumerate(schemas):
             if DEBUG_BREAKS:
