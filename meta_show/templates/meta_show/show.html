@@ -26,8 +26,9 @@
     {% endif %}
   </div>
   <div class="cell small-6">
-    Please click on element on the left to see its meta data:
-    <div id="meta"></div>
+    <div id="meta">
+      Please click on element on the left to see its meta data:
+    </div>
   </div>
 </div>
 
@@ -44,11 +45,8 @@
         data: {
           'meta_id': meta_id
         },
-        dataType: 'json',
         success: function (data) {
-          if (data.json) {
-            $('#meta').html(data.json)
-          }
+            $('#meta').html(data)
         }
       });
 

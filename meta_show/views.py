@@ -2,7 +2,6 @@
 import sqlahelper
 from django.views.generic import TemplateView
 from django.views.defaults import bad_request
-from django.http import JsonResponse
 
 from meta_show import forms, models
 
@@ -40,13 +39,17 @@ class ShowView(TemplateView):
         return self.render_to_response(context)
 
 
-def get_meta(request):
-    meta_id = request.GET.get('meta_id', None)
-    if meta_id is not None:
+class JsonView(TemplateView):
+    template_name = 'includes/json_item.html'
+
+    def get_context_data(self, meta_id):
+        if meta_id is None:
+            return {}
         session = sqlahelper.get_session()
         meta = session.query(models.Meta).get(meta_id)
-        data = {
-            'json': str(meta.json)
-        }
-        return JsonResponse(data)
-    return JsonResponse({})
+        return {'data': meta.json}
+
+    def get(self, request, *args, **kwargs):
+        meta_id = request.GET.get('meta_id', None)
+        context = self.get_context_data(meta_id)
+        return self.render_to_response(context)

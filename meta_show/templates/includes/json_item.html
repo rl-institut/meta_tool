@@ -1,0 +1,15 @@
+{% load json_tags %}
+
+{% if data.items %}
+  {% for key, value in data.items %}
+    <b>{{key}}:</b> {% include 'includes/json_item.html' with data=value %}
+  {% endfor %}
+{% elif data|is_list %}
+  <ul>
+  {% for item in data %}
+    <li>{% include 'includes/json_item.html' with data=item %}</li>
+  {% endfor %}
+  </ul>
+{% else %}
+  {{data}}<br>
+{% endif %}
