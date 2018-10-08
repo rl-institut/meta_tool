@@ -92,8 +92,6 @@ def get_meta_from_db():
     engines = sqlahelper._engines
     engine_count = len(engines)
     for e, engine_name in enumerate(engines):
-        if e > 1:
-            break
         logging.info(f'Engine ({e + 1}/{engine_count}): {engine_name}')
         engine = sqlahelper.get_engine(engine_name)
         inspect = sqla.inspect(engine)
@@ -124,10 +122,6 @@ def get_meta_from_db():
         schemas = inspect.get_schema_names()
         schema_count = len(schemas)
         for s, schema in enumerate(schemas):
-            if s < 5:
-                continue
-            if s > 10:
-                break
             logging.info(f'- Schema ({s + 1}/{schema_count}): {schema}')
 
             owner = get_owner_from_db(engine, schema)
