@@ -5,10 +5,10 @@ import sqlahelper
 import transaction
 import logging
 
-from meta_show.settings import config
+from meta_show import settings
 from meta_show.models import Meta, Run, Source, Owner, get_or_create
 
-DEBUG_BREAKS = True
+DEBUG_BREAKS = False
 
 
 def get_comment_from_db(engine, schema=None, table=None):
@@ -94,16 +94,16 @@ def get_meta_from_db():
     engines = sqlahelper._engines
     engine_count = len(engines)
     for e, engine_name in enumerate(engines):
-        if DEBUG_BREAKS:
-            if e > 1:
-                break
+        if engine_name in settings.deactivated_sources:
+            continue
+
         logging.info(f'Engine ({e + 1}/{engine_count}): {engine_name}')
         engine = sqlahelper.get_engine(engine_name)
         inspect = sqla.inspect(engine)
 
-        source_info = config['SOURCES'][engine_name]
+        source_info = settings.config['SOURCES'][engine_name]
         info = '{ENGINE}://{HOST}:{PORT}'.format(
-            **config['DATABASES'][source_info['CONNECTION']])
+            **settings.config['DATABASES'][source_info['CONNECTION']])
         source = Source(
             type=source_info['TYPE'],
             name=engine_name,
@@ -174,4 +174,5 @@ def get_meta_from_db():
 
 
 if __name__ == '__main__':
+    DEBUG_BREAKS = True
     get_meta_from_db()

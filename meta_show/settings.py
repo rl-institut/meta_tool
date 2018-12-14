@@ -10,6 +10,8 @@ from meta_show.models import Base
 
 
 config = ConfigObj(os.environ['CONFIG_PATH'])
+deactivated_sources = list(
+    filter(None, os.environ.get('DEACTIVATED_SOURCES', "").split(',')))
 logging.basicConfig(level=logging.INFO)
 
 

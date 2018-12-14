@@ -3,7 +3,6 @@ from django.utils.safestring import mark_safe
 
 
 class JsonWidget(object):
-
     def __init__(self, json):
         self.json = json
 
