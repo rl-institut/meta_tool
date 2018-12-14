@@ -1,9 +1,11 @@
 
 import sqlahelper
+
+from django.http import HttpResponse
 from django.views.generic import TemplateView
 from django.views.defaults import bad_request
 
-from meta_show import forms, models
+from meta_show import forms, models, widgets
 
 
 class IndexView(TemplateView):
@@ -39,17 +41,7 @@ class ShowView(TemplateView):
         return self.render_to_response(context)
 
 
-class JsonView(TemplateView):
-    template_name = 'includes/json_item.html'
-
-    def get_context_data(self, meta_id):
-        if meta_id is None:
-            return {}
-        session = sqlahelper.get_session()
-        meta = session.query(models.Meta).get(meta_id)
-        return {'data': meta.json}
-
-    def get(self, request, *args, **kwargs):
-        meta_id = request.GET.get('meta_id', None)
-        context = self.get_context_data(meta_id)
-        return self.render_to_response(context)
+def get_meta(request):
+    meta_id = request.GET.get('meta_id')
+    meta_widget = widgets.JsonWidget(meta_id)
+    return HttpResponse(meta_widget.render())
