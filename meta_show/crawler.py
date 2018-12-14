@@ -169,8 +169,12 @@ def get_meta_from_db():
                     owner=owner
                 )
                 session.add(meta_table)
-
-    transaction.commit()
+    try:
+        transaction.commit()
+    except:
+        session.rollback()
+    finally:
+        session.close()
 
 
 if __name__ == '__main__':
