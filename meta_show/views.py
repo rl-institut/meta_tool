@@ -43,5 +43,7 @@ class ShowView(TemplateView):
 
 def get_meta(request):
     meta_id = request.GET.get('meta_id')
-    meta_widget = widgets.JsonWidget(meta_id)
+    session = sqlahelper.get_session()
+    json = session.query(models.Meta).get(meta_id).json
+    meta_widget = widgets.JsonWidget(json)
     return HttpResponse(meta_widget.render())

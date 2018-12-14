@@ -1,11 +1,8 @@
 
 from abc import ABC
-import sqlahelper
 
 from django.utils.safestring import mark_safe
 from django.forms.renderers import get_default_renderer
-
-from meta_show.models import Meta
 
 
 class CustomWidget(ABC):
@@ -29,11 +26,8 @@ class CustomWidget(ABC):
 
 class JsonWidget(object):
 
-    def __init__(self, meta_id):
-        self.meta = None
-        if meta_id is not None:
-            session = sqlahelper.get_session()
-            self.meta = session.query(Meta).get(meta_id).json
+    def __init__(self, json):
+        self.json = json
 
     def __convert_to_html(self, data):
         html = ''
@@ -50,4 +44,4 @@ class JsonWidget(object):
         return html
 
     def render(self):
-        return mark_safe(self.__convert_to_html(self.meta))
+        return mark_safe(self.__convert_to_html(self.json))
