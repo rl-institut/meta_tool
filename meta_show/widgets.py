@@ -1,27 +1,5 @@
 
-from abc import ABC
-
 from django.utils.safestring import mark_safe
-from django.forms.renderers import get_default_renderer
-
-
-class CustomWidget(ABC):
-    template_name: str = None
-
-    def __str__(self):
-        return self.render()
-
-    def get_context(self):
-        return {}
-
-    def render(self):
-        context = self.get_context()
-        return self._render(self.template_name, context)
-
-    @staticmethod
-    def _render(template_name, context):
-        renderer = get_default_renderer()
-        return mark_safe(renderer.render(template_name, context))
 
 
 class JsonWidget(object):
