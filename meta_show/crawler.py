@@ -6,7 +6,7 @@ import transaction
 import logging
 
 from meta_show.settings import config
-from meta_show.models import Meta, Run, Source
+from meta_show.models import Meta, Run, Source, Owner, get_or_create
 
 DEBUG_BREAKS = True
 
@@ -112,7 +112,9 @@ def get_meta_from_db():
         run.sources.append(source)
         session.flush()
 
-        owner = get_owner_from_db(engine)
+        owner_name = get_owner_from_db(engine)
+        owner = get_or_create(session, Owner, name=owner_name, run=run)
+        session.flush()
         comment = get_comment_from_db(engine)
         js = check_json(comment)
         meta_database = Meta(
@@ -138,7 +140,8 @@ def get_meta_from_db():
                     break
             logging.info(f'- Schema ({s + 1}/{schema_count}): {schema}')
 
-            owner = get_owner_from_db(engine, schema)
+            owner_name = get_owner_from_db(engine, schema)
+            owner = get_or_create(session, Owner, name=owner_name, run=run)
             comment = get_comment_from_db(engine, schema)
             js = check_json(comment)
             meta_schema = Meta(
@@ -155,7 +158,8 @@ def get_meta_from_db():
             for t, table in enumerate(tables):
                 logging.info(f'  - Table ({t + 1}/{table_count}): {table}')
 
-                owner = get_owner_from_db(engine, schema, table)
+                owner_name = get_owner_from_db(engine, schema, table)
+                owner = get_or_create(session, Owner, name=owner_name, run=run)
                 comment = get_comment_from_db(engine, schema, table)
                 js = check_json(comment)
                 meta_table = Meta(
