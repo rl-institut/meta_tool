@@ -8,8 +8,6 @@ import logging
 from meta_show import settings
 from meta_show.models import Meta, Run, Source, Owner, get_or_create
 
-DEBUG_BREAKS = False
-
 
 def get_comment_from_db(engine, schema=None, table=None):
     if table is not None:
@@ -133,11 +131,6 @@ def get_meta_from_db():
         ]
         schema_count = len(schemas)
         for s, schema in enumerate(schemas):
-            if DEBUG_BREAKS:
-                if s < 5:
-                    continue
-                if s > 10:
-                    break
             logging.info(f'- Schema ({s + 1}/{schema_count}): {schema}')
 
             owner_name = get_owner_from_db(engine, schema)
@@ -178,5 +171,4 @@ def get_meta_from_db():
 
 
 if __name__ == '__main__':
-    DEBUG_BREAKS = True
     get_meta_from_db()
