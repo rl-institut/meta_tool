@@ -1,15 +1,13 @@
 
 import os
-from configobj import ConfigObj
 import sqlalchemy
 import sqlalchemy_utils
 import sqlahelper
 import logging
+from meta_tool.settings import config
 
 from meta_show.models import Base
 
-
-config = ConfigObj(os.environ['CONFIG_PATH'])
 deactivated_sources = list(
     filter(None, os.environ.get('DEACTIVATED_SOURCES', "").split(',')))
 logging.basicConfig(level=logging.INFO)
