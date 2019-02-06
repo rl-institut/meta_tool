@@ -30,7 +30,7 @@
         "description": "(e.g. example/template/test)"
       }
     },
-    "publication_date": {
+    "publicationDate": {
       "type": "string",
       "format": "date",
       "description": "(e.g. 2018-06-12)"
@@ -51,7 +51,7 @@
           "format": "url",
           "description": "(e.g. https://github.com/OpenEnergyPlatform/organisation/wiki/metadata)"
         },
-        "source_code": {
+        "sourceCode": {
           "type": "string",
           "format": "url",
           "description": "(e.g. https://github.com/OpenEnergyPlatform/examples/tree/master/metadata)"
@@ -60,7 +60,7 @@
           "type": "string",
           "description": "(e.g. https://github.com/Ludee)"
         },
-        "grant_no": {
+        "grantNo": {
           "type": "string",
           "description": "(e.g. 03ET4057)"
         }
@@ -92,7 +92,7 @@
         "disable_edit_json": "True"
       },
       "properties": {
-        "reference_date": {
+        "referenceDate": {
           "type": "string",
           "format": "date",
           "description": "(e.g. 2016-01-01)"
@@ -294,7 +294,7 @@
                 "type": "string",
                 "description": "(e.g. none)"
               },
-              "decimal_separator": {
+              "decimalSeparator": {
                 "type": "string",
                 "description": "(e.g. .)"
               }
