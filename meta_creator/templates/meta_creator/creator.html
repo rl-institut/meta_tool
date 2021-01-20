@@ -4,7 +4,9 @@
 {% load static %}
 
 {% block scripts %}
-<form>
+<form method="post">
+  {% csrf_token %}
 {{creator}}{{creator.media}}
+  <input type="submit" value="Download">
 </form>
 {% endblock %}
