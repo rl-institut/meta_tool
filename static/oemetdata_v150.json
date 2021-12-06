@@ -1,22 +1,26 @@
 {
-    "title": "Your new metadata string using OEMetadata v1.4.1",
+    "title": "OEM Creator - New metadata string using OEMetadata v1.5.0",
     "type": "object",
     "properties": {
         "name": {
             "type": "string",
-            "description": "(e.g. oep_metadata_table_example_v14)"
+            "description": "(e.g. oep_metadata_table_example_v150)"
         },
         "title": {
             "type": "string",
-            "description": "(e.g. Good example title)"
+            "description": "(e.g. Example title for metadata example - Version 1.5.0)"
         },
         "id": {
             "type": "string",
-            "default": "http://openenergyplatform.org/dataedit/view/model_draft/oep_metadata_table_example_v14"
+            "description": "URI or DOI (e.g. http://openenergyplatform.org/dataedit/view/model_draft/oep_metadata_table_example_v150)"
         },
         "description": {
             "type": "string",
             "description": "(e.g. example metadata for example data)"
+        },
+        "subject": {
+            "type": "string",
+            "description": "(Reference the topic of the resource in ontology terms)"
         },
         "language": {
             "type": "string",
@@ -115,11 +119,12 @@
                     "description": "(e.g. 2016-01-01)"
                 },
                 "timeseries": {
-                    "type": "object",
+                    "type": "array",
+                    "title": "timeserie",
                     "options": {
                         "disable_edit_json": "True"
                     },
-                    "properties": {
+                    "items": {
                         "start": {
                             "type": "string",
                             "format": "date",
@@ -360,6 +365,14 @@
                 }
             }
         },
+        "@id": {
+            "type": "string",
+            "description": "Uniform Resource Identifier (URI) that links the resource via the dbpedia databus"
+        },
+        "context": {
+            "type": "string",
+            "description": "Explanation of metadata keys in ontology terms"
+        },
         "review": {
             "type": "object",
             "options": {
@@ -369,11 +382,19 @@
                 "path": {
                     "type": "string",
                     "format": "url",
-                    "description": "(e.g. https://github.com/OpenEnergyPlatform/data-preprocessing/wiki)"
+                    "description": "(Review Manual:  https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)"
                 },
                 "badge": {
                     "type": "string",
-                    "description": "platin"
+                    "default": "null",
+                    "enum": [
+                            "null",
+                            "Bronze",
+                            "Silver ",
+                            "Gold",
+                            "Platinum"
+                            ],
+                    "description": "Bronze; Silver, Gold, Platinum"
                 }
             }
         },
@@ -386,7 +407,7 @@
             "properties": {
                 "metadataVersion": {
                     "type": "string",
-                    "default": "OEP-1.4.1"
+                    "default": "OEP-1.5.0"
                 },
                 "metadataLicense": {
                     "type": "object",
@@ -420,7 +441,7 @@
             "properties": {
                 "metadata": {
                     "type": "string",
-                    "default": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata/blob/master/metadata/v141/metadata_key_description.md)"
+                    "default": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)"
                 },
                 "dates": {
                     "type": "string",
@@ -440,11 +461,15 @@
                 },
                 "review": {
                     "type": "string",
-                    "default": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/wiki)"
+                    "default": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)"
                 },
-                "none": {
+                "null": {
                     "type": "string",
-                    "default": "If not applicable use (none)"
+                    "default": "If not applicable use: null"
+                },
+                "todo": {
+                    "type": "string",
+                    "default": "If a value is not yet available, use: todo"
                 }
             }
         }
