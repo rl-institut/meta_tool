@@ -5,3 +5,4 @@ sqlahelper
 configobj
 psycopg2-binary
 django_jsonforms
+environs

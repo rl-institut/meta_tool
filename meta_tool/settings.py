@@ -11,23 +11,26 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import environs
 from configobj import ConfigObj
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-config = ConfigObj(os.environ['CONFIG_PATH'])
+
+# config = ConfigObj(os.environ['CONFIG_PATH'])
+env = environs.Env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config['DJANGO']['SECRET_KEY']
+SECRET_KEY = env.str('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config['DJANGO'].get('DEBUG', False)
+DEBUG = env.bool("DEBUG", False)
 
-ALLOWED_HOSTS = config['DJANGO']['ALLOWED_HOSTS']
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', [])
 
 
 # Application definition
