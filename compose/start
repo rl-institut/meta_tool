@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+
+python /app/manage.py collectstatic --noinput
+gunicorn meta_tool.wsgi --bind 0.0.0.0:80 --chdir=/app

@@ -3,7 +3,7 @@ services:
   meta_tool:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./compose/Dockerfile
     image: meta_tool
     container_name: meta_tool
     restart: unless-stopped
@@ -13,3 +13,4 @@ services:
       - 80
     volumes:
     - ./config:/config
+    command: /start
