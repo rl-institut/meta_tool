@@ -6,3 +6,4 @@ configobj==5.0.6
 psycopg2-binary==2.9.2
 django_jsonforms==1.1.2
 environs==9.3.5
+gunicorn==20.1.0
