@@ -126,4 +126,4 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-JSONFORMS_SCHEMA_DIR = 'static'
+JSONFORMS_SCHEMA_DIR = 'static/metajsons/'
