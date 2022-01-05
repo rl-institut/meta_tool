@@ -20,7 +20,7 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', RedirectView.as_view(pattern_name='meta_creator:creator')),
+    path('', RedirectView.as_view(pattern_name='meta_creator:index')),
     # path('meta_show/', include('meta_show.urls', namespace='meta_show')),
     path(
         'meta_creator/',

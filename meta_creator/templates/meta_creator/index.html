@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+  <h3>Supported metadata versions:</h3>
+  <ul>
+    {% for version in versions %}
+      <li><a href="{{version}}">v{{version}}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock content %}

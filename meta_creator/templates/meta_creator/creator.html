@@ -3,8 +3,12 @@
 
 {% load static %}
 
+{% block content %}
+  <form>
+    {{creator}}
+  </form>
+{% endblock content %}
+
 {% block scripts %}
-<form>
-{{creator}}{{creator.media}}
-</form>
+  {{creator.media}}
 {% endblock %}
