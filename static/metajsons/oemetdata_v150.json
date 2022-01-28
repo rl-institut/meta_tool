@@ -23,13 +23,17 @@
             "description": "(Reference the topic of the resource in ontology terms)"
         },
         "language": {
-            "type": "string",
-            "enum": [
-                "en-GB",
-                "en-US",
-                "de-DE",
-                "fr-FR"
-            ]
+            "type": "array",
+            "items": {
+                "title": "language",
+                "type": "string",
+                "enum": [
+                    "en-GB",
+                    "en-US",
+                    "de-DE",
+                    "fr-FR"
+                ]
+            }
         },
         "keywords": {
             "type": "array",
@@ -120,32 +124,36 @@
                 },
                 "timeseries": {
                     "type": "array",
-                    "title": "timeserie",
+                    "title": "timeseries",
                     "options": {
                         "disable_edit_json": "True"
                     },
                     "items": {
-                        "start": {
-                            "type": "string",
-                            "format": "date",
-                            "description": "(e.g. 2017-01-01T00:00+01)"
-                        },
-                        "end": {
-                            "type": "string",
-                            "format": "date",
-                            "description": "(e.g. 2017-12-31T23:00+01)"
-                        },
-                        "resolution": {
-                            "type": "string",
-                            "description": "(e.g. 1 h)"
-                        },
-                        "alignment": {
-                            "type": "string",
-                            "description": "(e.g. left)"
-                        },
-                        "aggregationType": {
-                            "type": "string",
-                            "description": "(e.g. sum)"
+                        "title": "timeseries",
+                        "type": "object",
+                        "properties": {
+                            "start": {
+                                "type": "string",
+                                "format": "date",
+                                "description": "(e.g. 2017-01-01T00:00+01)"
+                            },
+                            "end": {
+                                "type": "string",
+                                "format": "date",
+                                "description": "(e.g. 2017-12-31T23:00+01)"
+                            },
+                            "resolution": {
+                                "type": "string",
+                                "description": "(e.g. 1 h)"
+                            },
+                            "alignment": {
+                                "type": "string",
+                                "description": "(e.g. left)"
+                            },
+                            "aggregationType": {
+                                "type": "string",
+                                "description": "(e.g. sum)"
+                            }
                         }
                     }
                 }
@@ -333,6 +341,14 @@
                                             "type": "string",
                                             "description": "(e.g. serial/integer/double precision/geometry(Point, 4326))"
                                         },
+                                        "is_about": {
+                                            "type": "string",
+                                            "description": "Ontology URI to describe the column header"
+                                        },
+                                        "value_reference": {
+                                            "type": "string",
+                                            "description": "Ontology URI for an extended description of the values in the column"
+                                        },
                                         "unit": {
                                             "type": "string",
                                             "description": "(e.g. none/none/MW/none)"
@@ -369,9 +385,9 @@
             "type": "string",
             "description": "Uniform Resource Identifier (URI) that links the resource via the dbpedia databus"
         },
-        "context": {
+        "@context": {
             "type": "string",
-            "description": "Explanation of metadata keys in ontology terms"
+            "description": "Explanation of metadata keys in ontology terms (e.g. https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/30887e4cd7dabc316d1ee674791f0cc815277e38/metadata/latest/context.json)"
         },
         "review": {
             "type": "object",
@@ -388,12 +404,12 @@
                     "type": "string",
                     "default": "null",
                     "enum": [
-                            "null",
-                            "Bronze",
-                            "Silver ",
-                            "Gold",
-                            "Platinum"
-                            ],
+                        "null",
+                        "Bronze",
+                        "Silver ",
+                        "Gold",
+                        "Platinum"
+                    ],
                     "description": "Bronze; Silver, Gold, Platinum"
                 }
             }
