@@ -4,7 +4,7 @@
 
 <div class="grid-x grid-margin-x">
   <div class="cell">
-    <form action="{% url 'meta_show:show' %}" method="post">
+    <form action="{% url 'meta_crawler:index' %}" method="post">
       {% csrf_token %}
       {{run_form}}
     </form>
@@ -41,7 +41,7 @@
   <script>
     function get_meta(meta_id) {
       $.ajax({
-        url: '{% url 'meta_show:meta' %}',
+        url: '{% url 'meta_crawler:meta' %}',
         data: {
           'meta_id': meta_id
         },

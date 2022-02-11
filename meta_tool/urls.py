@@ -15,15 +15,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import RedirectView
+from django.views.generic import RedirectView, TemplateView
+from django.conf import settings
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', RedirectView.as_view(pattern_name='meta_creator:index')),
-    # path('meta_show/', include('meta_show.urls', namespace='meta_show')),
     path(
         'meta_creator/',
         include('meta_creator.urls', namespace='meta_creator')
     )
 ]
+
+if settings.ENABLE_CRAWLER:
+    urlpatterns += [
+        path('', TemplateView.as_view(template_name="index.html")),
+        path('meta_crawler/', include('meta_crawler.urls', namespace='meta_crawler'))
+    ]
+else:
+    urlpatterns += [
+        path('', RedirectView.as_view(pattern_name='meta_creator:index'))
+    ]

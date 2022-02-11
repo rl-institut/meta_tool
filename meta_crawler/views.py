@@ -1,28 +1,21 @@
 
-import sqlahelper
-
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from django.views.defaults import bad_request
 
-from meta_show import forms, models, widgets
+from . import forms, models, widgets
 
 
 class IndexView(TemplateView):
-    template_name = 'meta_show/index.html'
-
-
-class ShowView(TemplateView):
-    template_name = 'meta_show/show.html'
+    template_name = 'meta_crawler/index.html'
 
     def get_context_data(self, run_form, run_id, **kwargs):
-        context = super(ShowView, self).get_context_data(**kwargs)
+        context = super(IndexView, self).get_context_data(**kwargs)
         context['run_form'] = run_form
 
         # Get root:
-        session = sqlahelper.get_session()
-        run = session.query(models.Run).get(run_id)
-        context['engines'] = run.sources
+        # run = session.query(models.Run).get(run_id)
+        # context['engines'] = run.sources
         return context
 
     def get(self, request, *args, **kwargs):
@@ -43,7 +36,6 @@ class ShowView(TemplateView):
 
 def get_meta(request):
     meta_id = request.GET.get('meta_id')
-    session = sqlahelper.get_session()
-    json = session.query(models.Meta).get(meta_id).json
-    meta_widget = widgets.JsonWidget(json)
+    # json = session.query(models.Meta).get(meta_id).json
+    meta_widget = widgets.JsonWidget({"json": "test"})
     return HttpResponse(meta_widget.render())

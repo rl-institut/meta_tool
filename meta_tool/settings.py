@@ -11,15 +11,13 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-import environs
-from configobj import ConfigObj
+import environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# config = ConfigObj(os.environ['CONFIG_PATH'])
-env = environs.Env()
+env = environ.Env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -30,7 +28,7 @@ SECRET_KEY = env.str('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", False)
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', [])
+ALLOWED_HOSTS = env('ALLOWED_HOSTS', default=[])
 
 
 # Application definition
@@ -42,10 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django_jsonforms',
-    'meta_show',
     'meta_creator',
     'django.contrib.staticfiles',
 ]
+ENABLE_CRAWLER = env.bool("ENABLE_CRAWLER")
+if ENABLE_CRAWLER:
+    INSTALLED_APPS.append("meta_crawler")
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -81,7 +81,8 @@ WSGI_APPLICATION = 'meta_tool.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {}
+DATABASES = {"default": env.db("DATABASE_URL")}
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 
 # Password validation

@@ -1,18 +1,14 @@
 
-import sqlahelper
 from django import forms
 
-from meta_show import models
+from . import models
 
 
 class RunSelectionForm(forms.Form):
     def __init__(self, data=None):
         super(RunSelectionForm, self).__init__(data)
 
-        session = sqlahelper.get_session()
-        runs = session.query(models.Run).all()
-
-        choices = [(run.run_id, run.timestamp) for run in runs]
+        choices = []
         self.fields['runs'] = forms.ChoiceField(
             choices=choices,
             widget=forms.Select(attrs={'onChange': 'submit()'})
