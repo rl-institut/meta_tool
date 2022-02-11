@@ -36,9 +36,11 @@ class FilesystemCrawler(Crawler):
             else:
                 owner = Owner.objects.get_or_create(name=owner_data["title"], email=owner_data["email"])[0]
             meta = Meta(
+                source=self.source,
                 location=str(path),
                 version=metadata["metaMetadata"]["metadataVersion"],
                 title=metadata["title"],
+                name=metadata["name"],
                 metadata=metadata,
                 owner=owner,
             )

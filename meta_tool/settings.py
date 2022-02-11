@@ -41,11 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django_jsonforms',
-    'meta_creator',
     'django.contrib.staticfiles',
+    'meta_creator',
 ]
 if ENABLE_CRAWLER := env.bool("ENABLE_CRAWLER", False):
-    INSTALLED_APPS.append("meta_crawler")
+    INSTALLED_APPS += ["meta_crawler", "django_filters"]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

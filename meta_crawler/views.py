@@ -1,41 +1,31 @@
 
+from collections import namedtuple
+
 from django.http import HttpResponse
-from django.views.generic import TemplateView
-from django.views.defaults import bad_request
+from django_filters.views import FilterView
 
-from . import forms, models, widgets
+from . import models, widgets, filters
 
 
-class IndexView(TemplateView):
+MetaItem = namedtuple("MetaItem", ["id", "title", "name"])
+
+
+class IndexView(FilterView):
     template_name = 'meta_crawler/index.html'
+    filterset_class = filters.MetaFilter
 
-    def get_context_data(self, run_form, run_id, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        context['run_form'] = run_form
-
-        # Get root:
-        # run = session.query(models.Run).get(run_id)
-        # context['engines'] = run.sources
+        # FIXME: Look only at latest run!
+        # TODO: More & better filters
+        context['metas'] = [
+            MetaItem(meta.id, meta.title, meta.name) for meta in self.object_list
+        ]
         return context
-
-    def get(self, request, *args, **kwargs):
-        run_form = forms.RunSelectionForm()
-        run_id = run_form.get_first_run()
-        context = self.get_context_data(run_form, run_id)
-        return self.render_to_response(context)
-
-    def post(self, request):
-        run_form = forms.RunSelectionForm(request.POST)
-        if run_form.is_valid():
-            run_id = run_form.cleaned_data['runs']
-        else:
-            return bad_request(request, IndexError)
-        context = self.get_context_data(run_form, run_id)
-        return self.render_to_response(context)
 
 
 def get_meta(request):
     meta_id = request.GET.get('meta_id')
-    # json = session.query(models.Meta).get(meta_id).json
-    meta_widget = widgets.JsonWidget({"json": "test"})
+    metadata = models.Meta.objects.get(id=meta_id).metadata
+    meta_widget = widgets.JsonWidget(metadata)
     return HttpResponse(meta_widget.render())

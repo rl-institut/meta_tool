@@ -1,3 +1,4 @@
 .idea/
 /.envs/.production/.django
 meta.db
+crawler_config.json

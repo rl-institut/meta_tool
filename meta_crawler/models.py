@@ -22,9 +22,11 @@ class Tag(models.Model):
 
 
 class Meta(models.Model):
+    source = models.ForeignKey(Source, on_delete=models.DO_NOTHING, related_name="metas")
     location = models.CharField(max_length=1024)
     version = models.CharField(max_length=20)
     title = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     metadata = models.JSONField()
     owner = models.ForeignKey(Owner, on_delete=models.DO_NOTHING, related_name="metas", null=True)
     tags = models.ManyToManyField(Tag)
