@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
+
 import os
 import environ
 
@@ -43,8 +44,7 @@ INSTALLED_APPS = [
     'meta_creator',
     'django.contrib.staticfiles',
 ]
-ENABLE_CRAWLER = env.bool("ENABLE_CRAWLER")
-if ENABLE_CRAWLER:
+if ENABLE_CRAWLER := env.bool("ENABLE_CRAWLER", False):
     INSTALLED_APPS.append("meta_crawler")
 
 MIDDLEWARE = [
