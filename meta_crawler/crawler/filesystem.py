@@ -14,9 +14,7 @@ class FilesystemCrawler(Crawler):
 
     def crawl(self):
         meta_counter = 0
-        for path in self.path.rglob("*"):
-            if path.suffix != ".json":
-                continue
+        for path in self.path.rglob("*.json"):
             with open(path, "r") as jsonfile:
                 try:
                     metadata = json.load(jsonfile)
