@@ -1,4 +1,5 @@
 
+from django.utils.html import escape
 from django.utils.safestring import mark_safe
 
 
@@ -17,7 +18,7 @@ class JsonWidget(object):
                 html += f'<li>{self.__convert_to_html(item)}</li>'
             html += '</ul>'
         else:
-            html += f'{data}<br>'
+            html += f'{escape(data)}<br>'
         return html
 
     def render(self):
