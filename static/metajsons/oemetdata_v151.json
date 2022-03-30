@@ -5,12 +5,6 @@
     "description": "Open Energy Plaftorm (OEP) metadata schema latest",
     "type": "object",
     "properties": {
-        "@context": {
-            "description": "Explanation of metadata keys in ontology terms. Example: https://raw.githubusercontent.com/LOD-GEOSS/databus-snippets/master/oep_metadata/context.jsonld",
-            "type": "string",
-            "format": "uri",
-            "title": "@context"
-        },
         "name": {
             "type": "string",
             "description": "(e.g. oep_metadata_table_example_v150)",
@@ -566,6 +560,12 @@
                 "title": "Resource"
             },
             "title": "Resource"
+        },
+        "@context": {
+            "description": "Explanation of metadata keys in ontology terms. Example: https://raw.githubusercontent.com/LOD-GEOSS/databus-snippets/master/oep_metadata/context.jsonld",
+            "type": "string",
+            "format": "uri",
+            "title": "@context"
         },
         "review": {
             "description": "Data uploaded through the OEP needs to go through review. The review will cover the areas described here: https://github.com/OpenEnergyPlatform/data-preprocessing/wiki and carried out by a team of the platform. The review itself is documented at the specified path and a badge is rewarded with regards to completeness.",
