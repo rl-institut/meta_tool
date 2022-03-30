@@ -21,12 +21,6 @@
             "format": "uri",
             "title": "Id"
         },
-        "@id": {
-            "description": "Uniform Resource Identifier (URI) that links the resource via the databus",
-            "type": "string",
-            "format": "uri",
-            "title": "@Id"
-        },
         "description": {
             "description": "A description of the package. It should be usable as summary information for the entire package that is described by the metadata. Example: Example table used to illustrate the metadata structure and meaning",
             "type": "string",
@@ -560,6 +554,12 @@
                 "title": "Resource"
             },
             "title": "Resource"
+        },
+        "@id": {
+            "description": "Uniform Resource Identifier (URI) that links the resource via the databus",
+            "type": "string",
+            "format": "uri",
+            "title": "@Id"
         },
         "@context": {
             "description": "Explanation of metadata keys in ontology terms. Example: https://raw.githubusercontent.com/LOD-GEOSS/databus-snippets/master/oep_metadata/context.jsonld",
