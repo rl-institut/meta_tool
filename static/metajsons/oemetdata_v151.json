@@ -592,7 +592,8 @@
                 "metadataVersion": {
                     "description": "Type and version number of the metadata. Example: OEP-1.5",
                     "type": "string",
-                    "title": "Metadata version"
+                    "title": "Metadata version",
+                    "default": "OEP-1.5.1"
                 },
                 "metadataLicense": {
                     "description": "Object describing the license of the provided metadata.",
@@ -601,17 +602,20 @@
                         "name": {
                             "description": "SPDX identifier. Example: CC0-1.0",
                             "type": "string",
-                            "title": "Name"
+                            "title": "Name",
+                            "default": "CC0-1.0"
                         },
                         "title": {
                             "description": "Official (human readable) license title. Example: Creative Commons Zero v1.0 Universal",
                             "type": "string",
-                            "title": "Title"
+                            "title": "Title",
+                            "default": "Creative Commons Zero v1.0 Universal"
                         },
                         "path": {
                             "description": "Url or path string, that is a fully qualified HTTP address. Example: https://creativecommons.org/publicdomain/zero/1.0/",
                             "type": "string",
-                            "title": "Path"
+                            "title": "Path",
+                            "default": "https://creativecommons.org/publicdomain/zero/1.0/"
                         }
                     },
                     "additionalProperties": false,
