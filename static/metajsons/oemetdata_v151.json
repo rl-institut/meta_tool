@@ -113,18 +113,18 @@
                     "title": "Grant Number"
                 },
                 "fundingAgency": {
-                    "description": "In a funded Project: The name of the funding agency. Example: Bundesministerium für Wirtschaft und Energie",
+                    "description": "A name of the entity providing the funding. This can be a government agency or a company. Example: Bundesministerium für Wirtschaft und Klimaschutz (BMWK)",
                     "type": "string",
                     "title": "Funding agency"
                 },
                 "fundingAgencyLogo": {
-                    "description": "In a publicly funded Project: A link to the Logo of the funding agency. Example: https://www.innovation-beratung-foerderung.de/INNO/Redaktion/DE/Bilder/Titelbilder/titel_foerderlogo_bmwi.jpg?__blob=poster&v=2",
+                    "description": "A URL to the logo or image of the funding agency. Example: https://commons.wikimedia.org/wiki/File:BMWi_Logo_2021.svg#/media/File:BMWi_Logo_2021.svg",
                     "type": "string",
                     "title": "Funding agency logo",
                     "format": "uri"
                 },
                 "publisherLogo": {
-                    "description": "Link to the logo of the publishing institution. Example: https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png",
+                    "description": "A URL to the logo of the publishing agency of data. Example: https://reiner-lemoine-institut.de//wp-content/uploads/2015/09/rlilogo.png",
                     "type": "string",
                     "title": "Publisher logo",
                     "format": "uri"
