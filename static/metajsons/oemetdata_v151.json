@@ -84,33 +84,33 @@
             "type": "object",
             "properties": {
                 "homepage": {
-                    "description": "URL of project. Example: https://openenergy-platform.org/",
+                    "description": "A URL of the project. Example: https://openenergy-platform.org/",
                     "type": "string",
                     "title": "Homepage",
                     "format": "uri"
                 },
                 "documentation": {
-                    "description": "URL of project documentation. Example: https://github.com/OpenEnergyPlatform/metadata/wiki/Metadata-Description",
+                    "description": "A URL of the project documentation. Example: https://github.com/OpenEnergyPlatform/metadata/wiki/Metadata-Description",
                     "type": "string",
                     "format": "uri",
                     "title": "Documentation"
                 },
                 "sourceCode": {
-                    "description": "Url of project source code. Example: https://github.com/OpenEnergyPlatform",
+                    "description": "A URL of the projects source code. Example: https://github.com/OpenEnergyPlatform",
                     "type": "string",
                     "format": "uri",
                     "title": "Source code"
                 },
                 "contact": {
-                    "description": "Reference to the creator or maintainer of the data set. Example: contact@example.com",
+                    "description": "A reference to the creator or maintainer of the data set. It can be an email address or a GitHub handle. Example: https://github.com/Ludee",
                     "type": "string",
-                    "title": "E-Mail contact",
+                    "title": "Contact",
                     "format": "email"
                 },
                 "grantNo": {
-                    "description": "In a publicly funded Project: the identifying grant number. Example: 01AB2345",
+                    "description": "An identifying grant number. In case of a publicly funded project, this number is assigned by the funding agency. Example: 01AB2345",
                     "type": "string",
-                    "title": "Grant no"
+                    "title": "Grant Number"
                 },
                 "fundingAgency": {
                     "description": "In a funded Project: The name of the funding agency. Example: Bundesministerium für Wirtschaft und Energie",
