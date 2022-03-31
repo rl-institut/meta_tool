@@ -7,16 +7,16 @@
     "properties": {
         "name": {
             "type": "string",
-            "description": "(e.g. oep_metadata_table_example_v150)",
+            "description": "A file name or database table name. Example: oep_metadata_table_example_v151",
             "title": "Name"
         },
         "title": {
             "type": "string",
             "title": "Title",
-            "description": "(e.g. Example title for metadata example - Version 1.5.0)"
+            "description": "A human readable full title including author. Example: Example title for metadata example - Version 1.5.1"
         },
         "id": {
-            "description": "Uniform Resource Identifier (URI) that unambiguously identifies the resource. This can be a URL on the data set. It can also be a Digital Object Identifier (DOI). Example: https://example.com",
+            "description": "Uniform Resource Identifier (URI) that unambiguously identifies the resource. This can be a URL or a DOI. Example: http://openenergyplatform.org/dataedit/view/model_draft/oep_metadata_table_example_v151",
             "type": "string",
             "format": "uri",
             "title": "Id"
