@@ -27,6 +27,7 @@
             "title": "Description"
         },
         "language": {
+            "description": "An array of languages used within the described data structures. Standard: IETF (BCP47)"
             "type": "array",
             "items": {
                 "title": "language",
@@ -35,7 +36,8 @@
                     "en-GB",
                     "en-US",
                     "de-DE",
-                    "fr-FR"
+                    "fr-FR",
+                    "other"
                 ]
             }
         },
