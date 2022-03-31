@@ -402,8 +402,7 @@
                                         "name": {
                                             "description": "Name string unique within its scope. Example: year",
                                             "type": "string",
-                                            "title": "Name",
-                                            "readonly": true
+                                            "title": "Name"
                                         },
                                         "description": {
                                             "description": "Free-text describing the field. Example: Reference year for which the data were collected.",
@@ -413,8 +412,7 @@
                                         "type": {
                                             "description": "Data type of the field. In case of a geom-column in a database, also indicate the shape and CRS. Example: geometry(Point, 4326)",
                                             "type": "string",
-                                            "title": "Type",
-                                            "readonly": true
+                                            "title": "Type"
                                         },
                                         "isAbout": {
                                             "description": "Ontology URI to describe the column header",
