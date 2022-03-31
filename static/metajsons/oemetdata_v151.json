@@ -592,10 +592,10 @@
             "type": "object",
             "properties": {
                 "metadataVersion": {
-                    "description": "Type and version number of the metadata. Example: OEP-1.5",
+                    "description": "Type and version number of the metadata. Example: oemetadata_v1.5.1",
                     "type": "string",
                     "title": "Metadata version",
-                    "default": "OEP-1.5.1"
+                    "default": "oemetadata_v1.5.1"
                 },
                 "metadataLicense": {
                     "description": "Object describing the license of the provided metadata.",
