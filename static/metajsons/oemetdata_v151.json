@@ -363,7 +363,8 @@
                     "profile": {
                         "description": "A string identifying the profile of this descriptor as per the profiles specification. This information is retained in order to comply with the \"Tabular Data Package\" standard. If at all in doubt the value should read \"tabular-data-resource\". Example: tabular-data-resource",
                         "type": "string",
-                        "title": "Profile"
+                        "title": "Profile",
+                        "default": "tabular-data-resource"
                     },
                     "name": {
                         "description": "A resource MUST contain a name unique to amongst all resources in this data package. To comply with the data package standard it must consist of only lowercase alphanumeric character plus \".\", \"-\" and \"_\". It may not start with a number. In a database this will be the name of the table within its containing schema. It would be usual for the name to correspond to the file name (minus the file-extension) of the data file the resource describes. Example: sandbox.example_table",
@@ -378,12 +379,14 @@
                     "format": {
                         "description": "\"csv\", \"xls\", \"json\" etc. would be expected to be the standard file extension for this type of resource. When you upload your data to the OEDB, in the shown metadata string, the format will be changed accordingly to \"PostgreSQL\", since the data there are stored in a database. Example: csv",
                         "type": "string",
-                        "title": "Format"
+                        "title": "Format",
+                        "default": "csv"
                     },
                     "encoding": {
                         "description": "Specifies the character encoding of the resource's data file. The values should be one of the \"Preferred MIME Names\" for a character encoding registered with IANA. If no value for this key is specified then the default is UTF-8. Example: UTF-8",
                         "type": "string",
-                        "title": "Encoding"
+                        "title": "Encoding",
+                        "default": "UTF-8"
                     },
                     "schema": {
                         "description": "Object containing fields, primary key and for foreign keys. Describes the structure of the present data.",
