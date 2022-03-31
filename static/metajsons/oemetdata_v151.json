@@ -48,12 +48,12 @@
                 "type": "object",
                 "properties": {
                     "name": {
-                        "description": "Name of the OEO Class",
+                        "description": "The class label (name) of the ontology term.",
                         "type": "string",
                         "title": "Name"
                     },
                     "path": {
-                        "description": "Path to the OEO (URL)",
+                        "description": "The URI of the class.",
                         "type": "string",
                         "title": "Path",
                         "format": "uri"
@@ -65,7 +65,7 @@
             "title": "Subject"
         },
         "keywords": {
-            "description": "An array of string keywords to assist users searching for the package in catalogs. Example: [example, template, test]",
+            "description": "An array of string keywords to assist users searching for the package in catalogs. Example: example, template, test",
             "type": "array",
             "items": {
                 "type": "string",
@@ -80,7 +80,7 @@
             "format": "date"
         },
         "context": {
-            "description": "Object. Contains name-value-pairs that describe the general setting, evironment or project leading to the creation or maintenance of this dataset.",
+            "description": "An object that describes the general setting, environment, or project leading to the creation or maintenance of this dataset. In science this is can be the research project.",
             "type": "object",
             "properties": {
                 "homepage": {
