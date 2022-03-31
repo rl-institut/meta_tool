@@ -26,6 +26,19 @@
             "type": "string",
             "title": "Description"
         },
+        "language": {
+            "type": "array",
+            "items": {
+                "title": "language",
+                "type": "string",
+                "enum": [
+                    "en-GB",
+                    "en-US",
+                    "de-DE",
+                    "fr-FR"
+                ]
+            }
+        },
         "subject": {
             "description": "Reference the topic of the resource in ontology terms",
             "type": "array",
@@ -48,19 +61,6 @@
                 "title": "Subject"
             },
             "title": "Subject"
-        },
-        "language": {
-            "type": "array",
-            "items": {
-                "title": "language",
-                "type": "string",
-                "enum": [
-                    "en-GB",
-                    "en-US",
-                    "de-DE",
-                    "fr-FR"
-                ]
-            }
         },
         "keywords": {
             "description": "An array of string keywords to assist users searching for the package in catalogs. Example: [example, template, test]",
