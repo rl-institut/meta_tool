@@ -27,7 +27,7 @@
             "title": "Description"
         },
         "language": {
-            "description": "An array of languages used within the described data structures. Standard: IETF (BCP47)"
+            "description": "An array of languages used within the described data structures. Standard: IETF (BCP47)",
             "type": "array",
             "items": {
                 "title": "language",
