@@ -42,9 +42,9 @@ Collaboration
 
 License and Citation
 ====================
-| The code is licensed under the AGPL-3.0-or-later.
+| The code is licensed under the **GNU Affero General Public License v3.0 or later** (AGPL-3.0-or-later).
 | See `LICENSE.txt <LICENSE.txt>`_ for further information.
-| Copyright: © Reiner Lemoine Institut
+| Copyright: `© Reiner Lemoine Institut <https://reiner-lemoine-institut.de/>_
 
 
 .. |badge_license| image:: https://github.com/rl-institut/meta_tool/
