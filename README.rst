@@ -26,8 +26,9 @@ RLI Metadata Tool
 
 Introduction
 ============
-| This code generates a web application to create a valid metadata string following the latest version of the **Open Energy Metadata** standard (OEMetadata). 
-| The latest metadata verion is `OEMetadata v1.5.1 <https://github.com/OpenEnergyPlatform/oemetadata>`
+| This software builds a web application to create and validate metadata strings following the **Open Energy Metadata** (OEMetadata). 
+| The latest metadata version is `OEMetadata v1.5.1<https://github.com/OpenEnergyPlatform/oemetadata>`
+| The running instance can be accessed on: https://meta.rl-institut.de/meta_creator/
 
 
 Documentation
@@ -42,7 +43,7 @@ Collaboration
 License and Citation
 ====================
 | The code is licensed under the AGPL-3.0-or-later.
-| See `LICENSE.txt <LICENSE.txt>` for further information.
+| See `LICENSE.txt<LICENSE.txt>` for further information.
 | Copyright: © Reiner Lemoine Institut
 
 
