@@ -3,7 +3,7 @@
 RLI Metadata Tool
 =================
 
-**Generate metadata strings using the Open Energy Metadata standard**
+**Generate and validate metadata strings following the Open Energy Metadata standard**
 
 .. list-table::
    :widths: auto
@@ -44,7 +44,7 @@ License and Citation
 ====================
 | The code is licensed under the **GNU Affero General Public License v3.0 or later** (AGPL-3.0-or-later).
 | See `LICENSE.txt <LICENSE.txt>`_ for further information.
-| Copyright: `© Reiner Lemoine Institut <https://reiner-lemoine-institut.de/>_
+| Copyright: `© Reiner Lemoine Institut <https://reiner-lemoine-institut.de/>`_
 
 
 .. |badge_license| image:: https://github.com/rl-institut/meta_tool/
