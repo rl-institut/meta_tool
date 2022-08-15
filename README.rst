@@ -47,7 +47,7 @@ License and Citation
 | Copyright: `© Reiner Lemoine Institut <https://reiner-lemoine-institut.de/>`_
 
 
-.. |badge_license| image:: https://github.com/rl-institut/meta_tool
+.. |badge_license| image:: https://img.shields.io/github/license/rl-institut/meta_tool
     :target: LICENSE.txt
     :alt: License
 
