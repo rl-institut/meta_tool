@@ -3,7 +3,7 @@
 RLI Metadata Tool
 =================
 
-**Generate metadata strings using `Open Energy Metadata <https://github.com/OpenEnergyPlatform/oemetadata>`**
+**Generate metadata strings using Open Energy Metadata (OEMetadata)**
 
 .. list-table::
    :widths: auto
@@ -26,8 +26,9 @@ RLI Metadata Tool
 
 Introduction
 ============
-| This code generates a web application to create a valid metadata string following the latest version of the Open Energy Metadata standard: OEMetadata v1.5.1
-| 
+| This code generates a web application to create a valid metadata string following the latest version of the **Open Energy Metadata** standard (OEMetadata). 
+| The latest metadata verion is `OEMetadata v1.5.1 <https://github.com/OpenEnergyPlatform/oemetadata>`
+
 
 Documentation
 =============
